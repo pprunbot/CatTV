@@ -1,0 +1,842 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f7fa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 公告栏样式 */
+.announcement-bar {
+    background-color: #fffae6;
+    color: #e6a700;
+    padding: 8px 0;
+    border-bottom: 1px solid #ffe58f;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.announcement-icon {
+    margin-right: 8px;
+    font-size: 1.1rem;
+}
+
+/* 头部样式 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eaeaea;
+    flex-wrap: wrap;
+    gap: 15px;
+    position: relative;
+}
+
+.header h1 {
+    font-size: 1.8rem;
+    color: #1890ff;
+    flex-grow: 1;
+}
+
+.header-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.site-info {
+    background: #e6f7ff;
+    color: #1890ff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.home-link, .test-search-link {
+    display: inline-block;
+    padding: 8px 15px;
+    background: #1890ff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+}
+
+.home-link:hover, .test-search-link:hover {
+    background: #40a9ff;
+    text-decoration: none;
+}
+
+.test-search-link {
+    background: #52c41a;
+}
+
+.test-search-link:hover {
+    background: #73d13d;
+}
+
+/* 搜索表单 */
+.search-form {
+    margin-bottom: 30px;
+}
+
+.form-group {
+    display: flex;
+    max-width: 800px;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+.site-select {
+    padding: 10px 15px;
+    border: 2px solid #1890ff;
+    border-radius: 4px;
+    background: white;
+    font-size: 16px;
+    min-width: 180px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: 2px solid #1890ff;
+    border-radius: 4px;
+    outline: none;
+}
+
+.search-button {
+    padding: 0 30px;
+    background: #1890ff;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.search-button:hover {
+    background: #40a9ff;
+}
+
+/* 热门搜索 */
+.hot-searches {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.hot-searches h3 {
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.hot-searches ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.hot-searches a {
+    color: #1890ff;
+    text-decoration: none;
+}
+
+.hot-searches a:hover {
+    text-decoration: underline;
+}
+
+/* 搜索结果 */
+.search-results {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.current-site {
+    margin-bottom: 15px;
+    padding: 8px 12px;
+    background: #e6f7ff;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.search-results h2 {
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: 500;
+}
+
+.show-results-btn {
+    padding: 12px 25px;
+    background: #1890ff;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s;
+    margin-top: 20px;
+}
+
+.show-results-btn:hover {
+    background: #40a9ff;
+}
+
+/* 弹窗样式 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    width: 90%;
+    max-width: 800px;
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #ff4d4f;
+    text-decoration: none;
+}
+
+/* 结果列表 */
+.result-list {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.result-item {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.result-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.result-link {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.result-link h3 {
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.episode {
+    display: inline-block;
+    background: #e6f7ff;
+    color: #1890ff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.result-meta {
+    display: flex;
+    justify-content: space-between;
+    color: #888;
+    font-size: 0.9rem;
+    padding-top: 8px;
+    border-top: 1px solid #eee;
+}
+
+.site-info {
+    background: #f0f2f5;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.no-results {
+    text-align: center;
+    padding: 40px 0;
+    color: #666;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.action-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #1890ff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.action-button:hover {
+    background: #40a9ff;
+}
+
+/* 播放器 */
+.player-container {
+    position: relative;
+    overflow: hidden;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    background: #000;
+    margin-bottom: 20px;
+}
+
+.video-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* 当前播放信息 */
+.current-playing {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    background: #e6f7ff;
+    border-radius: 6px;
+    border-left: 4px solid #1890ff;
+}
+
+.playing-title {
+    font-weight: bold;
+    color: #1890ff;
+}
+
+.playing-site {
+    background: #1890ff;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+/* 剧集列表 */
+.episode-list {
+    margin-top: 20px;
+}
+
+.episode-list h3 {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.episodes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.episode {
+    display: block;
+    padding: 10px;
+    background: #f0f2f5;
+    color: #333;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.2s;
+    cursor: pointer;
+    text-align: center;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.episode:hover {
+    background: #e6f7ff;
+    color: #1890ff;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.episode.active {
+    background: #1890ff;
+    color: white;
+    font-weight: bold;
+}
+
+/* 无播放源状态 */
+.no-player {
+    padding: 40px 20px;
+    text-align: center;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.no-player p {
+    margin: 10px 0;
+    color: #666;
+}
+
+.no-player p:first-child {
+    font-size: 1.2rem;
+    color: #ff4d4f;
+    font-weight: bold;
+}
+
+.no-player-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+/* 页脚 */
+.footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eaeaea;
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .form-group {
+        flex-direction: column;
+    }
+    
+    .site-select, .search-input, .search-button {
+        width: 100%;
+    }
+    
+    .current-playing {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .no-player-actions {
+        flex-direction: column;
+    }
+    
+    .header-actions {
+        margin-top: 10px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+        margin: 10% auto;
+    }
+}
+
+
+/* Logo链接样式 */
+.logo-link {
+    font-size: 1.8rem;
+    color: #1890ff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+    flex-grow: 1;
+}
+
+.logo-link:hover {
+    color: #40a9ff;
+    text-decoration: none;
+}
+
+/* 调整头部布局 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eaeaea;
+    flex-wrap: wrap;
+    gap: 15px;
+    position: relative;
+}
+
+.header-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .logo-link {
+        text-align: center;
+        display: block;
+        width: 100%;
+    }
+    
+    .header-actions {
+        margin-top: 10px;
+        justify-content: center;
+    }
+}
+
+
+/* 头部布局 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eaeaea;
+    flex-wrap: wrap;
+    gap: 15px;
+    position: relative;
+}
+
+.header-left {
+    flex-grow: 1;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+/* 项目链接样式 */
+.project-link {
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+.project-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #1890ff;
+    padding: 5px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+}
+
+.project-link:hover .project-icon {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(24, 144, 255, 0.3);
+    border-color: #40a9ff;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .header-right {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+    
+    .header-left {
+        margin-top: 20px;
+    }
+}
+
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f7fa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 头部布局 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eaeaea;
+    flex-wrap: wrap;
+    gap: 15px;
+    position: relative;
+}
+
+.header-left {
+    flex-grow: 1;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo链接样式 */
+.logo-link {
+    font-size: 1.8rem;
+    color: #1890ff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+    flex-grow: 1;
+}
+
+.logo-link:hover {
+    color: #40a9ff;
+    text-decoration: none;
+}
+
+/* 项目链接样式 */
+.project-link {
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+.project-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #1890ff;
+    padding: 5px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+}
+
+.project-link:hover .project-icon {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(24, 144, 255, 0.3);
+    border-color: #40a9ff;
+}
+
+/* 搜索表单 */
+.search-form {
+    margin-bottom: 30px;
+}
+
+.form-group {
+    display: flex;
+    max-width: 800px;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+.site-select {
+    padding: 10px 15px;
+    border: 2px solid #1890ff;
+    border-radius: 4px;
+    background: white;
+    font-size: 16px;
+    min-width: 180px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: 2px solid #1890ff;
+    border-radius: 4px;
+    outline: none;
+}
+
+.search-button {
+    padding: 0 30px;
+    background: #1890ff;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.search-button:hover {
+    background: #40a9ff;
+}
+
+/* 热门搜索 */
+.hot-searches {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.hot-searches h3 {
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.hot-searches ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.hot-searches a {
+    color: #1890ff;
+    text-decoration: none;
+}
+
+.hot-searches a:hover {
+    text-decoration: underline;
+}
+
+/* 关于页面样式 */
+.about-content {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-content h2 {
+    margin-bottom: 20px;
+    color: #1890ff;
+    text-align: center;
+}
+
+.about-content p, .about-content li {
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+.about-content ul {
+    padding-left: 20px;
+}
+
+/* 页脚 */
+.footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eaeaea;
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.footer a {
+    color: #1890ff;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .header-right {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+    
+    .header-left {
+        margin-top: 20px;
+    }
+    
+    .form-group {
+        flex-direction: column;
+    }
+    
+    .site-select, .search-input, .search-button {
+        width: 100%;
+    }
+    
+    .logo-link {
+        text-align: center;
+        display: block;
+        width: 100%;
+    }
+}
