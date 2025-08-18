@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CatTV - 视频搜索平台</title>
+    <link rel="icon" href="https://py.bpbpanel.ip-ddns.com/https://img.icons8.com/?size=100&id=111173&format=png&color=000000" type="image/png">
+    <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-left">
+                <h1>CatTV </h1>
+            </div>
+            <div class="header-right">
+                <a href="https://github.com/" target="_blank" class="project-link">
+                    <img src="https://py.bpbpanel.ip-ddns.com/https://img.icons8.com/?size=100&id=62856&format=png&color=000000" alt="项目地址" class="project-icon">
+                </a>
+            </div>
+        </header>
+        
+        <main class="main-content">
+            <form action="/search" method="get" class="search-form">
+                <div class="form-group">
+                    <select name="site" class="site-select">
+                        <% sites.forEach(site => { %>
+                            <option value="<%= site.id %>" 
+                                <%= site.id === defaultSite ? 'selected' : '' %>>
+                                <%= site.name %>
+                            </option>
+                        <% }) %>
+                    </select>
+                    
+                    <input 
+                        type="text" 
+                        name="wd" 
+                        placeholder="输入影片名称、演员或导演..." 
+                        class="search-input"
+                        value=""
+                        required
+                    >
+                    
+                    <button type="submit" class="search-button">搜索</button>
+                </div>
+            </form>
+            
+            <div class="hot-searches">
+                <h3>热门搜索：</h3>
+                <ul>
+                    <li><a href="/search?wd=%E5%BF%83%E5%8A%A8%E7%9A%84%E4%BF%A1%E5%8F%B7&site=<%= defaultSite %>">心动的信号</a></li>
+                    <li><a href="/search?wd=%E9%95%BF%E7%9B%B8%E6%80%9D&site=<%= defaultSite %>">长相思</a></li>
+                    <li><a href="/search?wd=%E5%BC%82%E4%BA%BA%E4%B9%8B%E4%B8%8B&site=<%= defaultSite %>">异人之下</a></li>
+                    <li><a href="/search?wd=%E5%A4%A7%E5%9C%B0%E7%94%B5%E5%BD%B1&site=<%= defaultSite %>">大地</a></li>
+                </ul>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <p>© 2025 CatTV | 支持 <%= sites.length %> 个站点 | 仅供学习交流使用 | <a href="/about">免责声明</a></p>
+        </footer>
+    </div>
+</body>
+</html>

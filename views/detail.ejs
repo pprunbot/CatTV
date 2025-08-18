@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> - CatTV 视频播放</title>
+    <link rel="icon" href="https://py.bpbpanel.ip-ddns.com/https://img.icons8.com/?size=100&id=111173&format=png&color=000000" type="image/png">
+    <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="announcement-bar">
+            <marquee behavior="scroll" direction="left">
+                <span class="announcement-icon">🔊</span> 不要相信视频中任何广告，谨防上当！
+            </marquee>
+        </div>
+        
+        <header class="header">
+            <a href="/" class="logo-link">CatTV</a>
+            <div class="header-actions">
+                <span class="site-info"><%= sites.find(s => s.id === siteId).name %></span>
+            </div>
+        </header>
+        
+        <main class="main-content">
+            <% if (playLinks.length > 0) { %>
+                <div class="player-container">
+                    <iframe 
+                        class="video-player"
+                        src="<%= playLinks[0].playUrl %>" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                
+                <div class="current-playing">
+                    正在播放: <span class="playing-title"><%= playLinks[0].title %></span>
+                    <span class="playing-site"><%= sites.find(s => s.id === siteId).name %></span>
+                </div>
+                
+                <% if (playLinks.length > 1) { %>
+                    <div class="episode-list">
+                        <h3>播放源：</h3>
+                        <div class="episodes">
+                            <% playLinks.forEach((link, index) => { %>
+                                <a 
+                                    href="javascript:void(0);" 
+                                    class="episode <%= index === 0 ? 'active' : '' %>"
+                                    data-playurl="<%= link.playUrl %>"
+                                    data-title="<%= link.title %>"
+                                >
+                                    <%= link.title %>
+                                </a>
+                            <% }) %>
+                        </div>
+                    </div>
+                <% } %>
+            <% } else { %>
+                <div class="no-player">
+                    <p>未找到可用的播放源</p>
+                    <p>请尝试其他视频或站点</p>
+                    <div class="no-player-actions">
+                        <a href="/" class="action-button">返回首页</a>
+                    </div>
+                </div>
+            <% } %>
+        </main>
+        
+        <footer class="footer">
+            <p>© 2025 CatTV | 当前视频: <%= title %> | 站点: <%= sites.find(s => s.id === siteId).name %></p>
+        </footer>
+    </div>
+    <script>
+        // 切换播放源
+        document.querySelectorAll('.episode').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // 更新活跃状态
+                document.querySelectorAll('.episode').forEach(el => {
+                    el.classList.remove('active');
+                });
+                item.classList.add('active');
+                
+                // 更新播放器
+                const player = document.querySelector('.video-player');
+                player.src = item.dataset.playurl;
+                
+                // 更新当前播放标题
+                const titleElement = document.querySelector('.playing-title');
+                if (titleElement) {
+                    titleElement.textContent = item.dataset.title;
+                }
+                
+                // 滚动到播放器位置
+                player.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索结果 - CatTV</title>
+    <link rel="icon" href="https://py.bpbpanel.ip-ddns.com/https://img.icons8.com/?size=100&id=111173&format=png&color=000000" type="image/png">
+    <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>CatTV 视频搜索</h1>
+            <a href="/" class="home-link">返回首页</a>
+        </header>
+        
+        <main class="main-content">
+            <form action="/search" method="get" class="search-form">
+                <div class="form-group">
+                    <select name="site" class="site-select">
+                        <% sites.forEach(site => { %>
+                            <option value="<%= site.id %>" 
+                                <%= site.id === siteId ? 'selected' : '' %>>
+                                <%= site.name %>
+                            </option>
+                        <% }) %>
+                    </select>
+                    
+                    <input 
+                        type="text" 
+                        name="wd" 
+                        placeholder="输入影片名称、演员或导演..." 
+                        class="search-input"
+                        value="<%= keyword %>"
+                        required
+                    >
+                    
+                    <button type="submit" class="search-button">搜索</button>
+                </div>
+            </form>
+            
+            <div class="search-results">
+                <h2>关于"<%= keyword %>"的搜索结果</h2>
+                <div class="current-site">当前站点: 
+                    <strong><%= sites.find(s => s.id === siteId).name %></strong>
+                </div>
+                
+                <button class="show-results-btn">显示搜索结果 (<%= results.length %>)</button>
+                
+                <div id="resultsModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-btn">&times;</span>
+                        <h2>关于"<%= keyword %>"的搜索结果</h2>
+                        <div class="current-site">当前站点: 
+                            <strong><%= sites.find(s => s.id === siteId).name %></strong>
+                        </div>
+                        
+                        <% if (results.length === 0) { %>
+                            <div class="no-results">
+                                <p>没有找到相关资源，请尝试其他关键词或站点</p>
+                                <a href="/" class="action-button">返回首页</a>
+                            </div>
+                        <% } else { %>
+                            <ul class="result-list">
+                                <% results.forEach(item => { %>
+                                    <li class="result-item">
+                                        <a href="/detail?url=<%= encodeURIComponent(item.detailUrl) %>&site=<%= siteId %>" class="result-link">
+                                            <h3><%= item.title %></h3>
+                                            <% if (item.episode) { %>
+                                                <span class="episode"><%= item.episode %></span>
+                                            <% } %>
+                                        </a>
+                                        <div class="result-meta">
+                                            <% if (item.date) { %>
+                                                <span class="date">更新: <%= formatDate(item.date) %></span>
+                                            <% } %>
+                                            <span class="site-info"><%= sites.find(s => s.id === siteId).name %></span>
+                                        </div>
+                                    </li>
+                                <% }) %>
+                            </ul>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <p>© 2025 CatTV | 共找到 <%= results.length %> 个资源 | 当前站点: <%= sites.find(s => s.id === siteId).name %></p>
+        </footer>
+    </div>
+    <script>
+        // 弹窗控制
+        const modal = document.getElementById("resultsModal");
+        const btn = document.querySelector(".show-results-btn");
+        const span = document.querySelector(".close-btn");
+        
+        // 页面加载后自动显示弹窗
+        window.onload = function() {
+            if (<%= results.length %> > 0) {
+                modal.style.display = "block";
+            }
+        };
+        
+        // 点击按钮显示弹窗
+        btn.onclick = function() {
+            modal.style.display = "block";
+        };
+        
+        // 点击关闭按钮隐藏弹窗
+        span.onclick = function() {
+            modal.style.display = "none";
+        };
+        
+        // 点击弹窗外部关闭
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+    </script>
+</body>
+</html>
+

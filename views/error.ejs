@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发生错误 - CatTV</title>
+    <link rel="icon" href="https://py.bpbpanel.ip-ddns.com/https://img.icons8.com/?size=100&id=111173&format=png&color=000000" type="image/png">
+    <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>CatTV 视频搜索</h1>
+            <a href="/" class="home-link">返回首页</a>
+        </header>
+        
+        <main class="main-content error-content">
+            <div class="error-card">
+                <h2><%= message %></h2>
+                <p class="error-details"><%= error %></p>
+                <div class="error-actions">
+                    <a href="/" class="action-button">返回首页</a>
+                    <a href="javascript:history.back()" class="action-button">返回上一页</a>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <p>© 2025 CatTV | 错误报告</p>
+        </footer>
+    </div>
+</body>
+</html>
