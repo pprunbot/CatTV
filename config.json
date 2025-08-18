@@ -1,0 +1,36 @@
+{
+  "sites": [
+    {
+      "id": "site1",
+      "name": "金鹰资源",
+      "searchUrl": "https://jinyingzy.net/index.php/vod/search.html?wd={keyword}",
+      "baseUrl": "https://jinyingzy.net",
+      "resultSelector": ".xing_vb4",
+      "resultTitle": "a",
+      "resultLink": "a@href",
+      "resultEpisode": "em",
+      "resultDate": ".xing_vb7",
+      "playLinkSelectors": [
+        {
+          "type": "attribute",
+          "selector": "a[target='_black']",
+          "linkAttr": "href",
+          "titleAttr": "title",
+          "titleFallback": "text",
+          "titleSplit": "$"
+        },
+        {
+          "type": "attribute",
+          "selector": "input[name='copy_sel']",
+          "linkAttr": "value",
+          "titleStrategy": "closest",
+          "closestSelector": "li",
+          "titleSelector": "a[title]",
+          "titleAttr": "title"
+        }
+      ],
+      "excludePatterns": [".m3u8", "index.m3u8"]
+    }
+  ],
+  "defaultSite": "site1"
+}
