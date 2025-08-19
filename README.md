@@ -25,3 +25,19 @@ docker pull ghcr.io/pprunbot/cattv:main
 
 # 运行容器
 docker run -d -p 3000:3000 --name cattv ghcr.io/pprunbot/cattv:main
+
+2. Docker Compose 部署
+
+创建 docker-compose.yml 文件:
+```bash
+version: '3.8'
+services:
+  cattv:
+    image: ghcr.io/pprunbot/cattv:main
+    container_name: cattv
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
