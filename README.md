@@ -46,3 +46,20 @@ services:
 ```bash
 docker-compose up -d
 ```
+
+### 3. 传统部署
+```bash
+# 安装依赖
+npm install
+
+# 启动服务
+npm start
+```
+访问地址 👉 http://localhost:3000
+---
+
+## 📄 许可证
+
+本项目采用 Apache-2.0 License 开源，详情请查看 LICENSE
+。
+---
